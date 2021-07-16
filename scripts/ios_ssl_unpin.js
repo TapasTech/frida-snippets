@@ -1,5 +1,13 @@
 var SecTrustEvaluate_prt = Module.findExportByName("Security", "SecTrustEvaluate");
 var SecTrustEvaluate = new NativeFunction(SecTrustEvaluate_prt, "int", ["pointer", "pointer"]);
+
+class NativeCallback {
+  constructor(param, int, strings) {
+
+  }
+
+}
+
 Interceptor.replace(SecTrustEvaluate_prt, new NativeCallback(function(trust, result) {
   console.log("[*] SecTrustEvaluate(...) hit!");
   SecTrustEvaluate(trust, result); // call original method
